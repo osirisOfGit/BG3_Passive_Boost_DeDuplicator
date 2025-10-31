@@ -1,5 +1,6 @@
 Ext.Require("Utilities/Common/_Index.lua")
 
+Logger.isMCMIntegrated = false
 Logger:ClearLogFile()
 
 ---@param entity EntityHandle
@@ -31,19 +32,19 @@ Ext.Entity.Subscribe("BoostsContainer", function(entity)
 						if passiveTable[boostInfo.Cause.Cause][boostInfo.Prototype] then
 							table.insert(passiveTable[boostInfo.Cause.Cause][boostInfo.Prototype], boost)
 						else
-							passiveTable[boostInfo.Cause.Cause][boostInfo.Prototype] = {boost}
+							passiveTable[boostInfo.Cause.Cause][boostInfo.Prototype] = { boost }
 						end
 					else
-						passiveTable[boostInfo.Cause.Cause] = { [boostInfo.Prototype] = {boost} }
+						passiveTable[boostInfo.Cause.Cause] = { [boostInfo.Prototype] = { boost } }
 					end
 				end
-				-- Ext.System.ServerBoost.DetachAndDestroyBoost[boost] = true
 			end
 			for passiveId, prototypes in pairs(passiveTable) do
 				for prototype, boostEntities in pairs(prototypes) do
 					if #boostEntities > 1 then
 						removedBoosts = true
-						log = log .. ("\nPassive %s is duplicated with %d total boosts under Prototype Id %s, clearing all but the first"):format(passiveId, #boostEntities, prototype)
+						log = log ..
+						("\nPassive %s is duplicated with %d total boosts under Prototype Id %s, clearing all but the first"):format(passiveId, #boostEntities, prototype)
 						for b = #boostEntities, 2, -1 do
 							Ext.System.ServerBoost.DetachAndDestroyBoost[boostEntities[b]] = true
 						end
