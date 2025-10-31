@@ -11,6 +11,7 @@ Logger.timer = nil
 Logger.prefix = true
 ---@type "buffer"|"timer"
 Logger.mode = "buffer"
+Logger.isMCMIntegrated = true
 
 Logger.PrintTypes = {
     TRACE = 5,
@@ -99,7 +100,7 @@ local function GetRainbowText(text)
     return coloredText
 end
 
-local currentLogLevel = Logger.PrintTypes.DEBUG
+local currentLogLevel = Logger.PrintTypes.Info
 
 Ext.RegisterConsoleCommand("OSRS_UpdateLogLevel", function (cmd, logLevel)
     if Logger.PrintTypes[logLevel] then
@@ -108,7 +109,7 @@ Ext.RegisterConsoleCommand("OSRS_UpdateLogLevel", function (cmd, logLevel)
 end)
 
 function Logger:IsLogLevelEnabled(logLevel)
-    return MCM and (MCM.Get("log_level") >= logLevel) or currentLogLevel >= logLevel
+    return (self.isMCMIntegrated and MCM and (MCM.Get("log_level") >= logLevel)) or currentLogLevel >= logLevel
 end
 
 --- Function to print text with custom colors, message type, custom prefix, rainbowText, and prefix length
