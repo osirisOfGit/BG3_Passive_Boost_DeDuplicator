@@ -41,12 +41,19 @@ Ext.Entity.Subscribe("BoostsContainer", function(entity)
 				end
 			end
 			for passiveId, prototypes in pairs(passiveTable) do
+				local passiveCount = 0
+				for _, passiveEntity in pairs(entity.PassiveContainer.Passives) do
+					if passiveEntity.Passive.PassiveId == passiveId then
+						passiveCount = passiveCount + 1
+					end
+				end
+
 				for prototype, boostEntities in pairs(prototypes) do
-					if #boostEntities > 1 then
+					if #boostEntities > passiveCount then
 						removedBoosts = true
 						log = log ..
-						("\nPassive %s is duplicated with %d total boosts under Prototype Id %s, clearing all but the first"):format(passiveId, #boostEntities, prototype)
-						for b = #boostEntities, 2, -1 do
+							("\nPassive %s is duplicated with %d total boosts under Prototype Id %s, clearing all but the first"):format(passiveId, #boostEntities, prototype)
+						for b = #boostEntities, passiveCount, -1 do
 							Ext.System.ServerBoost.DetachAndDestroyBoost[boostEntities[b]] = true
 						end
 					end
