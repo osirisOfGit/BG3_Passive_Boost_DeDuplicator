@@ -11,6 +11,7 @@ Example:
 `git subtree pull --prefix Absolutes_Laboratory/Mods/Absolutes_Laboratory/ScriptExtender/Lua/Utilities git@github.com:osirisOfGit/BG3-Common-Dev-Utilities.git main --squash`
 
 `git subtree push --prefix Absolutes_Laboratory/Mods/Absolutes_Laboratory/ScriptExtender/Lua/Utilities git@github.com:osirisOfGit/BG3-Common-Dev-Utilities.git main`
+
 ## Credits/Helpful Links:
 
 ### IDE Helper Files
@@ -35,3 +36,5 @@ https://github.com/Norbyte/bg3se/blob/main/BG3Extender/IdeHelpers/ExtIdeHelpers.
 Most of the Common Utilities: [Fararagi](https://next.nexusmods.com/profile/Fararagi?gameId=3474)
 
 Aahz's toolbox of insanity - https://github.com/Aahzmandius/_Libs
+
+IMGUI Default Colors: https://github.com/Norbyte/bg3se/blob/f8b982125c6c1997ceab2d65cfaa3c1a04908ea6/BG3Extender/Extender/Client/IMGUI/IMGUI.cpp#L1901C34-L1901C60
