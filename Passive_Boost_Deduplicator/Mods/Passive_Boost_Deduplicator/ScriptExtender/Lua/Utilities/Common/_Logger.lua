@@ -99,8 +99,16 @@ local function GetRainbowText(text)
     return coloredText
 end
 
+local currentLogLevel = Logger.PrintTypes.DEBUG
+
+Ext.RegisterConsoleCommand("OSRS_UpdateLogLevel", function (cmd, logLevel)
+    if Logger.PrintTypes[logLevel] then
+        currentLogLevel = Logger.PrintTypes[logLevel]
+    end
+end)
+
 function Logger:IsLogLevelEnabled(logLevel)
-    return not MCM and true or (MCM.Get("log_level") >= logLevel)
+    return MCM and (MCM.Get("log_level") >= logLevel) or currentLogLevel >= logLevel
 end
 
 --- Function to print text with custom colors, message type, custom prefix, rainbowText, and prefix length
