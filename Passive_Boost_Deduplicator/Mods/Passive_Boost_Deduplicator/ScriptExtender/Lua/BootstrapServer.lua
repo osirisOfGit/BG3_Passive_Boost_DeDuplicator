@@ -1,6 +1,7 @@
 Ext.Require("Utilities/Common/_Index.lua")
 
 Logger.isMCMIntegrated = false
+Logger.currentLogLevel = Logger.PrintTypes.DEBUG
 Logger:ClearLogFile()
 
 ---@param entity EntityHandle
