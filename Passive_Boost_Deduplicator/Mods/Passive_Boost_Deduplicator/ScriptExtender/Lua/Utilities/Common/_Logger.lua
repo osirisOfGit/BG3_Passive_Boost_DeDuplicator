@@ -12,7 +12,6 @@ Logger.prefix = true
 ---@type "buffer"|"timer"
 Logger.mode = "buffer"
 Logger.isMCMIntegrated = true
-Logger.currentLogLevel = Logger.PrintTypes.INFO
 
 Logger.PrintTypes = {
     TRACE = 5,
@@ -28,6 +27,8 @@ Logger.PrintTypes = {
     [1] = "ERROR",
     [0] = "OFF",
 }
+
+Logger.currentLogLevel = Logger.PrintTypes.INFO
 
 local TEXT_COLORS = {
     black = 30,
